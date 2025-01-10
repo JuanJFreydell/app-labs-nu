@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,6 +28,25 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        {/* Navigation Bar */}
+        <nav className="flex h-14 w-full justify-between items-center fixed top-0 right-0 bg-black z-50">
+          <div className="h-full flex flex-row">
+            <p className="h-full flex bg-red-600 w-fit items-center text-white px-5 text-3xl font-serif">
+              N
+            </p>
+            <p className="h-full flex items-center text-white px-10 text-3xl font-serif">
+              App Lab NU
+            </p>
+          </div>
+          <ul className="flex h-full items-center justify-between gap-8 flex-row text-white text-xl pr-10">
+            <Link href="/" className="cursor-pointer hover:text-red-600">
+              About
+            </Link>
+            <Link href="/teams" className="cursor-pointer hover:text-red-600">
+              Active Teams
+            </Link>
+          </ul>
+        </nav>
         {children}
       </body>
     </html>
