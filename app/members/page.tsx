@@ -5,21 +5,21 @@ import { board_members, students, advisors } from "../(variables)/people";
 const Members: React.FC = () => {
   return (
     <div className="bg-gray-100 min-h-screen">
-      {/* Board */}
-      <h2 className="pt-20 text-3xl font-bold text-black mb-6 text-center">
-        NU App Lab Board
+      {/* Students Section */}
+      <h2 className="text-3xl font-bold text-black mb-6 text-center">
+        Students
       </h2>
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 mb-10">
-        {board_members.map((member, index) => (
+        {students.map((student, index) => (
           <PersonCard
             key={index}
-            url={member.url}
-            firstName={member.firstName}
-            lastName={member.lastName}
-            title={member.title}
-            interests={member.interests}
-            skills={member.skills}
-            position={member.position}
+            url={student.url}
+            firstName={student.firstName}
+            lastName={student.lastName}
+            title={student.title}
+            interests={student.interests}
+            skills={student.skills}
+            position={student.position}
           />
         ))}
       </div>
@@ -43,21 +43,21 @@ const Members: React.FC = () => {
         ))}
       </div>
 
-      {/* Students Section */}
-      <h2 className="text-3xl font-bold text-black mb-6 text-center">
-        Students
+      {/* Board */}
+      <h2 className="pt-20 text-3xl font-bold text-black mb-6 text-center">
+        NU App Lab Board
       </h2>
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 mb-10">
-        {students.map((student, index) => (
+        {board_members.map((member, index) => (
           <PersonCard
             key={index}
-            url={student.url}
-            firstName={student.firstName}
-            lastName={student.lastName}
-            title={student.title}
-            interests={student.interests}
-            skills={student.skills}
-            position={student.position}
+            url={member.url}
+            firstName={member.firstName}
+            lastName={member.lastName}
+            title={member.title}
+            interests={member.interests}
+            skills={member.skills}
+            position={member.position}
           />
         ))}
       </div>
