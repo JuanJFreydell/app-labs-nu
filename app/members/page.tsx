@@ -6,7 +6,7 @@ const Members: React.FC = () => {
   return (
     <div className="bg-gray-100 min-h-screen">
       {/* Students Section */}
-      <h2 className="text-3xl font-bold text-black mb-6 text-center">
+      <h2 className="pt-20 text-3xl font-bold text-black mb-6 text-center">
         Students
       </h2>
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 mb-10">
@@ -25,7 +25,7 @@ const Members: React.FC = () => {
       </div>
 
       {/* Advisors Section */}
-      <h2 className="text-3xl font-bold text-black mb-6 text-center">
+      <h2 className="pt-20 text-3xl font-bold text-black mb-6 text-center">
         Advisors
       </h2>
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 mb-10">
