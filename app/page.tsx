@@ -9,9 +9,10 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="h-fit flex flex-col">
+    <div className="h-fit flex flex-col bg-gradient-to-tr from-white from-40% to-fuchsia-100 to-80%">
       {/* Hero Section */}
-      <div className="flex flex-row h-dvh w-full bg-gradient-to-tr from-white from-40% to-fuchsia-100 to-80%">
+
+      <div className="flex flex-row h-dvh w-full ">
         <div className="flex flex-col h-full lg:w-1/2 justify-center">
           <p className="flex items-center px-5 lg:px-20 h-fit pt-14 text-red-600 font-bold text-sm lg:text-2xl">
             Where we gather to launch software products
@@ -36,14 +37,21 @@ export default function Home() {
       </div>
 
       {/* Calendar Section */}
-      {/* <div className="w-full bg-white py-20 px-10">
-        <h2 className="text-center text-4xl font-bold text-gray-800 mb-10">
+
+      <div className="lg:flex h-dvh w-full items-center justify-center">
+        <div className="flex items-center justify-center text-center w-full lg:w-1/2 text-4xl font-bold text-gray-800 underline">
           Event Calendar
-        </h2>
-        <div className="min-h-screen flex justify-center items-center bg-gray-100 rounded-lg shadow-lg">
-          <Calendar events={events} />
         </div>
-      </div> */}
+        <div className="w-dvw h-full lg:w-1/2 lg:h-3/4 flex justify-center items-center rounded-lg">
+          <iframe
+            src="https://lu.ma/embed/calendar/cal-GUaschGEOamfwOu/events?lt=light"
+            width="95%"
+            height="60%"
+            className="border-2 rounded-lg"
+            aria-hidden="false"
+          ></iframe>
+        </div>
+      </div>
     </div>
   );
 }
