@@ -13,7 +13,7 @@ export const board_members = [
   {
     url: "https://media.licdn.com/dms/image/v2/D5635AQGnlIZ3H2TwJQ/profile-framedphoto-shrink_400_400/profile-framedphoto-shrink_400_400/0/1726383945968?e=1738724400&v=beta&t=S6ZVXfC5NjJRf1_Bzp7lWaCqOK6ZVF2448cP-GMIvyw",
     firstName: "Yi-Chen",
-    lastName: "Chan",
+    lastName: "Chao",
     title: "President",
     interests: ["Full-stack"],
     skills: ["Product Management"],
