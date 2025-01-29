@@ -6,7 +6,7 @@ const TeamsList: React.FC = () => {
   return (
     <div className="bg-gray-100 min-h-screen">
       {/* Title */}
-      <h1 className="text-4xl font-bold text-black mb-10 text-center">
+      <h1 className="pt-20 text-4xl font-bold text-black mb-10 text-center">
         Active Teams
       </h1>
 
