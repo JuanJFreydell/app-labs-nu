@@ -1,7 +1,7 @@
 export const teams = [
   {
     name: "Rendi",
-    projectDescription: "Building a real-time chat app with secure messaging.",
+    projectDescription: "An App for LATAM users to trade American Stocks.",
     stack: ["React", "Node.js", "Socket.IO", "MongoDB"],
     presentationDate: "2025-02-15",
     members: [
