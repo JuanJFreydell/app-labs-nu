@@ -37,14 +37,14 @@ export default function Home() {
       </div>
 
       {/* Calendar Section */}
-      <div className="w-full bg-white py-20 px-10">
+      {/* <div className="w-full bg-white py-20 px-10">
         <h2 className="text-center text-4xl font-bold text-gray-800 mb-10">
           Event Calendar
         </h2>
         <div className="min-h-screen flex justify-center items-center bg-gray-100 rounded-lg shadow-lg">
           <Calendar events={events} />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
