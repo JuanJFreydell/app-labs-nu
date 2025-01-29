@@ -46,7 +46,7 @@ export default function Home() {
           <iframe
             src="https://lu.ma/embed/calendar/cal-GUaschGEOamfwOu/events?lt=light"
             width="95%"
-            height="60%"
+            height="90%"
             className="border-2 rounded-lg"
             aria-hidden="false"
           ></iframe>
