@@ -11,7 +11,7 @@ export const board_members = [
     position: "Board Member",
   },
   {
-    url: "https://media.licdn.com/dms/image/v2/D5635AQGnlIZ3H2TwJQ/profile-framedphoto-shrink_400_400/profile-framedphoto-shrink_400_400/0/1726383945968?e=1738724400&v=beta&t=S6ZVXfC5NjJRf1_Bzp7lWaCqOK6ZVF2448cP-GMIvyw",
+    url: "https://media.licdn.com/dms/image/v2/D5603AQHuujCKNdh6SA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1708323783581?e=1743638400&v=beta&t=GpibhhYq9nNhT3f9YcxMM5xZXT-eSwuXlNq7E1UXjek",
     firstName: "Yi-Chen",
     lastName: "Chao",
     title: "President",
@@ -33,7 +33,7 @@ export const board_members = [
 export const advisors = [
   {
     url: "https://media.licdn.com/dms/image/v2/D4D03AQEeZofS7LGaVw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1712175339702?e=1743638400&v=beta&t=mlK-IzeCLBf4KdmgoesTP5WqrrSrJBC7kpzpDGVKBkI",
-    firstName: "Chriss",
+    firstName: "Chris",
     lastName: "Geeng",
     title: "Teaching Professor",
     interests: ["HCI"],
