@@ -13,19 +13,19 @@ export default function Home() {
     <div className="h-fit flex flex-col">
       {/* Hero Section */}
       <div className="flex flex-row h-screen w-full bg-gradient-to-tr from-white from-40% to-fuchsia-100 to-80%">
-        <div className="flex flex-col h-full w-1/2 justify-center">
-          <p className="flex items-center px-20 h-fit pt-14 text-red-600 font-bold text-2xl">
+        <div className="flex flex-col h-full w-11/12 md:w-1/2 justify-center">
+          <p className="flex items-center px-5 md:px-20 h-fit pt-14 text-red-600 font-bold text-xs md:text-2xl">
             Where we gather to launch software products
           </p>
-          <h1 className="flex items-center px-20 h-fit font-bold text-8xl leading-tight">
+          <h1 className="flex items-center px-5 md:px-20 h-fit font-bold text-4xl md:text-8xl leading-tight">
             Northeastern Students Build.
           </h1>
-          <p className="flex items-center px-20 h-fit pt-4 text-zinc-600 text-2xl">
+          <p className="flex items-center px-5 md:px-20 h-fit pt-4 text-zinc-600 text-sm md:text-2xl">
             Join us to attend/host full-stack development seminars, find a team
             to collaborate with on software projects, and drink boba🧋.
           </p>
         </div>
-        <div className="flex w-1/2 h-full justify-center items-center">
+        <div className="md:flex w-1/2 h-full justify-center items-center hidden">
           <Image
             src="/AppDevelopment.png"
             alt="App Lab Visual"
