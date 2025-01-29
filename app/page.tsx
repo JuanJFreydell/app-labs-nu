@@ -12,24 +12,24 @@ export default function Home() {
     <div className="h-fit flex flex-col">
       {/* Hero Section */}
       <div className="flex flex-row h-dvh w-full bg-gradient-to-tr from-white from-40% to-fuchsia-100 to-80%">
-        <div className="flex flex-col h-full w-11/12 md:w-1/2 justify-center">
-          <p className="flex items-center px-5 md:px-20 h-fit pt-14 text-red-600 font-bold text-xs md:text-2xl">
+        <div className="flex flex-col h-full lg:w-1/2 justify-center">
+          <p className="flex items-center px-5 lg:px-20 h-fit pt-14 text-red-600 font-bold text-sm lg:text-2xl">
             Where we gather to launch software products
           </p>
-          <h1 className="flex items-center px-5 md:px-20 h-fit font-bold text-4xl md:text-8xl leading-tight">
-            Northeastern Students Build.
+          <h1 className="flex items-center px-5 lg:px-20 h-fit font-bold text-5xl lg:text-8xl leading-tight">
+            Northeastern Students Build
           </h1>
-          <p className="flex items-center px-5 md:px-20 h-fit pt-4 text-zinc-600 text-sm md:text-2xl">
+          <p className="flex items-center px-5 lg:px-20 h-fit pt-4 text-zinc-600 lg:text-2xl">
             Join us to attend/host full-stack development seminars, find a team
             to collaborate with on software projects, and drink boba🧋.
           </p>
         </div>
-        <div className="md:flex w-1/2 h-full justify-center items-center hidden">
+        <div className="lg:flex w-1/2 h-full justify-center items-center hidden">
           <Image
             src="/AppDevelopment.png"
             alt="App Lab Visual"
-            width={500}
-            height={500}
+            width={300}
+            height={300}
             className="rounded-lg shadow-lg"
           />
         </div>
