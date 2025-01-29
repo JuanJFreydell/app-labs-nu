@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <div className="h-fit flex flex-col">
       {/* Hero Section */}
-      <div className="flex flex-row h-screen w-full bg-gradient-to-tr from-white from-40% to-fuchsia-100 to-80%">
+      <div className="flex flex-row h-dvh w-full bg-gradient-to-tr from-white from-40% to-fuchsia-100 to-80%">
         <div className="flex flex-col h-full w-11/12 md:w-1/2 justify-center">
           <p className="flex items-center px-5 md:px-20 h-fit pt-14 text-red-600 font-bold text-xs md:text-2xl">
             Where we gather to launch software products
