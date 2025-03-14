@@ -136,8 +136,8 @@ export const students = [
   },
   {
     url: "https://media.licdn.com/dms/image/v2/D4E35AQGu_-LRbSaNng/profile-framedphoto-shrink_200_200/profile-framedphoto-shrink_200_200/0/1695248194570?e=1742583600&v=beta&t=exRgMaMyOADvtkBmL18vf1O3gwWwmXYRA4daahg4XBc",
-    firstName: "Zou",
-    lastName: "Hongquan",
+    firstName: "Hongquan",
+    lastName: "Zou",
     title: "Information Systems Direct",
     interests: ["Comming Soon"],
     skills: ["Fullstack"],
