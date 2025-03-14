@@ -9,6 +9,8 @@ export const board_members = [
     interests: ["Fintech", "Startups", "AI"],
     skills: ["React", "Next", "Javascript", "Express", "Mongo", "Tailwind"],
     position: "Board Member",
+    linkedin: "https://www.linkedin.com/in/juan-j-freydell/",
+    neuEmail: "freydellvelez.j@northeastern.edu",
   },
   {
     url: "https://media.licdn.com/dms/image/v2/D5603AQEOHohVKnCKtQ/profile-displayphoto-shrink_400_400/B56ZPx4hZ1H0Ag-/0/1734929946534?e=1743638400&v=beta&t=abIfCPtnVNdkOuUpvC4vOtdVgkRyNehpV-4sQt8pKOY",
@@ -48,6 +50,8 @@ export const advisors = [
     interests: ["HCI"],
     skills: ["Wireframing", "OOP", "Python", "Java"],
     position: "Advisor",
+    linkedin: "https://www.linkedin.com/in/chris-geeng-7b029bab/",
+    neuEmail: "c.geeng@northeastern.edu",
   },
   {
     url: "https://media.licdn.com/dms/image/v2/D4E03AQGXONV-6-927Q/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1662055671553?e=1743638400&v=beta&t=jrgeL3iFXJLcFp10jx8o69b0TauduRj53Yd572wlGQo",

@@ -20,6 +20,8 @@ const Members: React.FC = () => {
             interests={member.interests}
             skills={member.skills}
             position={member.position}
+            linkedin={member.linkedin}
+            neuEmail={member.neuEmail}
           />
         ))}
       </div>
@@ -39,6 +41,8 @@ const Members: React.FC = () => {
             interests={student.interests}
             skills={student.skills}
             position={student.position}
+            linkedin={student.linkedin}
+            neuEmail={student.neuEmail}
           />
         ))}
       </div>
@@ -58,6 +62,8 @@ const Members: React.FC = () => {
             interests={advisor.interests}
             skills={advisor.skills}
             position={advisor.position}
+            linkedin={advisor.linkedin}
+            neuEmail={advisor.neuEmail}
           />
         ))}
       </div>
