@@ -47,7 +47,7 @@ const Members: React.FC = () => {
       <h2 className="pt-20 text-3xl font-bold text-black mb-6 text-center">
         Advisors
       </h2>
-      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 mb-10">
+      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 pb-10">
         {advisors.map((advisor, index) => (
           <PersonCard
             key={index}
