@@ -26,7 +26,6 @@ const PersonCard: React.FC<PersonCardProps> = ({
   position,
   linkedin,
   neuEmail,
-  phone,
 }) => {
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
