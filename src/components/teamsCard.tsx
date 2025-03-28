@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 interface TeamMember {
   name: string;
@@ -58,9 +59,12 @@ const TeamCard: React.FC<TeamCardProps> = ({ team }) => {
               key={index}
               className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-md"
             >
-              <img
+              <Image
                 src={member.picture}
                 alt={member.name}
+                width={100}
+                height={100}
+                unoptimized={true}
                 className="w-full h-full object-cover"
               />
             </div>
