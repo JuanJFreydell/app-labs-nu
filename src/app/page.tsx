@@ -1,11 +1,5 @@
 import Image from "next/image";
 
-// const events = [
-//   { title: "Team Meeting", date: "2025-01-10" },
-//   { title: "Project Deadline", date: "2025-01-15" },
-//   { title: "Code Review", date: "2025-01-20" },
-// ];
-
 export default function Home() {
   return (
     <div className="h-fit flex flex-col bg-gradient-to-tr from-white from-40% to-fuchsia-100 to-80%">
