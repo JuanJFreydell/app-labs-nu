@@ -1,6 +1,6 @@
 import React from "react";
-import PersonCard from "../personCard"; // Import the new PersonCard component
-import { board_members, students, advisors } from "../(variables)/people";
+import PersonCard from "@/components/personCard"; // Import the new PersonCard component
+import { board_members, students, advisors } from "@/variables/people";
 
 const Members: React.FC = () => {
   return (

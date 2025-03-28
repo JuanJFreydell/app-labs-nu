@@ -32,12 +32,12 @@ const Calendar: React.FC<CalendarProps> = ({ events }) => {
           className: "bg-red-600 p-2 rounded w-48 text-white",
           onClick: () => setCurrentMonth(addDays(currentMonth, -30)),
         },
-        "Previous"
+        "Previous",
       ),
       React.createElement(
         "h2",
         { className: "text-xl font-bold" },
-        format(currentMonth, "MMMM yyyy")
+        format(currentMonth, "MMMM yyyy"),
       ),
       React.createElement(
         "button",
@@ -45,8 +45,8 @@ const Calendar: React.FC<CalendarProps> = ({ events }) => {
           className: "bg-red-600 p-2 rounded w-48 text-white",
           onClick: () => setCurrentMonth(addDays(currentMonth, 30)),
         },
-        "Next"
-      )
+        "Next",
+      ),
     );
   };
 
@@ -59,7 +59,7 @@ const Calendar: React.FC<CalendarProps> = ({ events }) => {
 
     while (day <= endDate) {
       const dailyEvents = events.filter((event) =>
-        isSameDay(parseISO(event.date), day)
+        isSameDay(parseISO(event.date), day),
       );
 
       days.push(
@@ -73,7 +73,7 @@ const Calendar: React.FC<CalendarProps> = ({ events }) => {
           React.createElement(
             "div",
             { className: "text-sm font-bold" },
-            format(day, "d")
+            format(day, "d"),
           ),
           ...dailyEvents.map((event, idx) =>
             React.createElement(
@@ -82,10 +82,10 @@ const Calendar: React.FC<CalendarProps> = ({ events }) => {
                 key: `${event.date}-${idx}`,
                 className: "event bg-blue-100 text-xs rounded mt-1 p-1 w-full",
               },
-              event.title
-            )
-          )
-        )
+              event.title,
+            ),
+          ),
+        ),
       );
       day = addDays(day, 1);
     }
@@ -95,7 +95,7 @@ const Calendar: React.FC<CalendarProps> = ({ events }) => {
       {
         className: "grid grid-cols-7 grid-rows-[repeat(6,minmax(0,1fr))] gap-2",
       },
-      ...days
+      ...days,
     );
   };
 
@@ -114,9 +114,9 @@ const Calendar: React.FC<CalendarProps> = ({ events }) => {
       React.createElement("div", null, "Wed"),
       React.createElement("div", null, "Thu"),
       React.createElement("div", null, "Fri"),
-      React.createElement("div", null, "Sat")
+      React.createElement("div", null, "Sat"),
     ),
-    generateCalendar()
+    generateCalendar(),
   );
 };
 

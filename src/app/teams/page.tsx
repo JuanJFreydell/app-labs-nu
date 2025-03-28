@@ -1,6 +1,6 @@
 import React from "react";
-import TeamCard from "../teamsCard";
-import { teams } from "../(variables)/teams";
+import TeamCard from "@/components/teamsCard";
+import { teams } from "@/variables/teams";
 
 const TeamsList: React.FC = () => {
   return (
