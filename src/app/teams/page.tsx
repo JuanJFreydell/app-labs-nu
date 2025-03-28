@@ -2,7 +2,7 @@ import React from "react";
 import TeamCard from "@/components/teamsCard";
 import { teams } from "@/variables/teams";
 
-const TeamsList: React.FC = () => {
+export default function TeamsList(){
   return (
     <div className="bg-gray-100 min-h-screen">
       {/* Title */}
@@ -25,6 +25,4 @@ const TeamsList: React.FC = () => {
       </div>
     </div>
   );
-};
-
-export default TeamsList;
+}

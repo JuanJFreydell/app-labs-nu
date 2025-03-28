@@ -2,7 +2,7 @@ import React from "react";
 import PersonCard from "@/components/personCard"; // Import the new PersonCard component
 import { board_members, students, advisors } from "@/variables/people";
 
-const Members: React.FC = () => {
+export default function Members() {
   return (
     <div className="bg-gray-100 min-h-screen">
       {/* Board */}
@@ -69,6 +69,4 @@ const Members: React.FC = () => {
       </div>
     </div>
   );
-};
-
-export default Members;
+}
