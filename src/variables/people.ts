@@ -1,6 +1,6 @@
-// Dummy data arrays for board members, advisors, and students
+import type { PersonCardProps } from "@/types";
 
-export const board_members = [
+export const board_members: PersonCardProps[] = [
   {
     url: "https://media.licdn.com/dms/image/v2/D5603AQHt2ToowPPwkw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1675456912927?e=1743638400&v=beta&t=4ru1gH1eVd01_gERFiW95MQqcM3sq9gv-nqnSBmqSKc",
     firstName: "Juan Jose",
@@ -41,7 +41,7 @@ export const board_members = [
   },
 ];
 
-export const advisors = [
+export const advisors: PersonCardProps[] = [
   {
     url: "https://media.licdn.com/dms/image/v2/D4D03AQEeZofS7LGaVw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1712175339702?e=1743638400&v=beta&t=mlK-IzeCLBf4KdmgoesTP5WqrrSrJBC7kpzpDGVKBkI",
     firstName: "Chris",
@@ -73,7 +73,7 @@ export const advisors = [
   },
 ];
 
-export const students = [
+export const students: PersonCardProps[] = [
   {
     url: "https://media.licdn.com/dms/image/v2/C5603AQE7EIP28SYyKg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1661767232326?e=1747267200&v=beta&t=PNevqWyfNh5MvM0AiMhw-bLirWw8JFwEiHfma9gVjCg",
     firstName: "Pei-yu",
@@ -99,7 +99,6 @@ export const students = [
     phone: "2409606138",
   },
   {
-    url: "none",
     firstName: "Chun-Cheng",
     lastName: "Liu",
     title: "Computer Science Direct",
