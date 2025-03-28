@@ -29,25 +29,25 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {/* Navigation Bar */}
-        <nav className="flex h-14 w-full justify-between fixed top-0 right-0 bg-black z-50">
-          <div className="h-full w-fit flex flex-row">
-            <p className="h-full flex bg-red-600 w-fit items-center text-white px-5 text-3xl font-serif">
+        <nav className="fixed top-0 right-0 z-50 flex h-14 w-full justify-between bg-black">
+          <div className="flex h-full w-fit flex-row">
+            <p className="flex h-full w-fit items-center bg-red-600 px-5 font-serif text-3xl text-white">
               N
             </p>
-            <p className="h-full hidden w-fit sm:flex items-center text-white px-10 text-3xl font-serif">
+            <p className="hidden h-full w-fit items-center px-10 font-serif text-3xl text-white sm:flex">
               App Lab NU
             </p>
           </div>
-          <ul className="px-2 flex justify-center h-full items-center flex-row text-white text-xl">
-            <Link href="/" className="cursor-pointer hover:bg-red-600 p-2">
+          <ul className="flex h-full flex-row items-center justify-center px-2 text-xl text-white">
+            <Link href="/" className="cursor-pointer p-2 hover:bg-red-600">
               About
             </Link>
-            <Link href="/teams" className="cursor-pointer hover:bg-red-600 p-2">
+            <Link href="/teams" className="cursor-pointer p-2 hover:bg-red-600">
               Groups
             </Link>
             <Link
               href="/members"
-              className="cursor-pointer hover:bg-red-600 p-2"
+              className="cursor-pointer p-2 hover:bg-red-600"
             >
               Members
             </Link>

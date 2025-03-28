@@ -4,12 +4,12 @@ import { board_members, students, advisors } from "@/variables/people";
 
 export default function Members() {
   return (
-    <div className="bg-gray-100 min-h-screen">
+    <div className="min-h-screen bg-gray-100">
       {/* Board */}
-      <h2 className="pt-20 text-3xl font-bold text-black mb-6 text-center">
+      <h2 className="mb-6 pt-20 text-center text-3xl font-bold text-black">
         NU App Lab Board
       </h2>
-      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 mb-10">
+      <div className="mb-10 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
         {board_members.map((member, index) => (
           <PersonCard
             key={index}
@@ -27,10 +27,10 @@ export default function Members() {
       </div>
 
       {/* Students Section */}
-      <h2 className="pt-20 text-3xl font-bold text-black mb-6 text-center">
+      <h2 className="mb-6 pt-20 text-center text-3xl font-bold text-black">
         Students
       </h2>
-      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 mb-10">
+      <div className="mb-10 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
         {students.map((student, index) => (
           <PersonCard
             key={index}
@@ -48,10 +48,10 @@ export default function Members() {
       </div>
 
       {/* Advisors Section */}
-      <h2 className="pt-20 text-3xl font-bold text-black mb-6 text-center">
+      <h2 className="mb-6 pt-20 text-center text-3xl font-bold text-black">
         Advisors
       </h2>
-      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 pb-10">
+      <div className="grid grid-cols-1 gap-4 pb-10 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
         {advisors.map((advisor, index) => (
           <PersonCard
             key={index}

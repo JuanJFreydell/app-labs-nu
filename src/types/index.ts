@@ -1,4 +1,3 @@
-
 export interface PersonCardProps {
   url?: string; // Picture URL
   firstName: string;
