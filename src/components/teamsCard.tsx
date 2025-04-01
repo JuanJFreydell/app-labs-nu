@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 interface TeamMember {
   name: string;
@@ -19,21 +20,21 @@ interface TeamCardProps {
 
 const TeamCard: React.FC<TeamCardProps> = ({ team }) => {
   return (
-    <div className="bg-white shadow-lg rounded-lg p-6 max-w-lg mx-auto border border-gray-200">
+    <div className="mx-auto max-w-lg rounded-lg border border-gray-200 bg-white p-6 shadow-lg">
       {/* Team Name */}
-      <h2 className="text-2xl font-bold text-red-600 mb-4">{team.name}</h2>
+      <h2 className="mb-4 text-2xl font-bold text-red-600">{team.name}</h2>
 
       {/* Project Description */}
-      <p className="text-gray-800 text-sm mb-4">{team.projectDescription}</p>
+      <p className="mb-4 text-sm text-gray-800">{team.projectDescription}</p>
 
       {/* Stack */}
       <div className="mb-4">
-        <h3 className="text-lg font-semibold text-black mb-2">Tech Stack</h3>
+        <h3 className="mb-2 text-lg font-semibold text-black">Tech Stack</h3>
         <div className="flex flex-wrap gap-2">
           {team.stack.map((tech, index) => (
             <span
               key={index}
-              className="bg-red-100 text-red-600 px-3 py-1 text-xs rounded-full"
+              className="rounded-full bg-red-100 px-3 py-1 text-xs text-red-600"
             >
               {tech}
             </span>
@@ -43,25 +44,28 @@ const TeamCard: React.FC<TeamCardProps> = ({ team }) => {
 
       {/* Presentation Date */}
       <div className="mb-6">
-        <h3 className="text-lg font-semibold text-black mb-2">
+        <h3 className="mb-2 text-lg font-semibold text-black">
           Presentation Date
         </h3>
-        <p className="text-gray-600 text-sm">{team.presentationDate}</p>
+        <p className="text-sm text-gray-600">{team.presentationDate}</p>
       </div>
 
       {/* Team Members */}
       <div>
-        <h3 className="text-lg font-semibold text-black mb-4">Team Members</h3>
+        <h3 className="mb-4 text-lg font-semibold text-black">Team Members</h3>
         <div className="flex -space-x-4">
           {team.members.map((member, index) => (
             <div
               key={index}
-              className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-md"
+              className="relative h-12 w-12 overflow-hidden rounded-full border-2 border-white shadow-md"
             >
-              <img
+              <Image
                 src={member.picture}
                 alt={member.name}
-                className="w-full h-full object-cover"
+                width={100}
+                height={100}
+                unoptimized={true}
+                className="h-full w-full object-cover"
               />
             </div>
           ))}

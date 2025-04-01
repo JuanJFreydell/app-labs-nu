@@ -2,19 +2,8 @@
 
 import React from "react";
 import { FaEnvelope, FaLinkedin, FaCopy } from "react-icons/fa";
-
-interface PersonCardProps {
-  url: string; // Picture URL
-  firstName: string;
-  lastName: string;
-  title: string; // Title or role (e.g., "Software Engineer")
-  interests?: string[]; // Optional: List of interests
-  skills?: string[]; // Optional: List of skills
-  position?: string; // Optional: Role in the organization (e.g., "Student" or "Advisor")
-  linkedin?: string; // Optional: LinkedIn profile URL
-  neuEmail?: string; // Optional: NEU email
-  phone?: string; // Optional: Phone number
-}
+import Image from "next/image";
+import type { PersonCardProps } from "@/types";
 
 const PersonCard: React.FC<PersonCardProps> = ({
   url,
@@ -32,7 +21,7 @@ const PersonCard: React.FC<PersonCardProps> = ({
   };
 
   return (
-    <div className="relative bg-white shadow-lg rounded-lg p-6 w-80 mx-auto border border-gray-200 flex flex-col h-full">
+    <div className="relative mx-auto flex h-full w-80 flex-col rounded-lg border border-gray-200 bg-white p-6 shadow-lg">
       <div className="absolute top-5 right-5 flex gap-2">
         {linkedin && (
           <a href={linkedin} className="">
@@ -41,7 +30,7 @@ const PersonCard: React.FC<PersonCardProps> = ({
         )}
 
         {neuEmail && (
-          <div className="relative group z-20">
+          <div className="group relative z-20">
             <button
               onClick={() => copyToClipboard(neuEmail)}
               className="hover:opacity-80"
@@ -49,7 +38,7 @@ const PersonCard: React.FC<PersonCardProps> = ({
             >
               <FaEnvelope className="inline" size={20} />
             </button>
-            <div className="absolute hidden group-hover:flex items-center gap-2 bg-gray-800 text-white px-3 py-1 rounded-md -bottom-10 right-0 text-sm whitespace-nowrap z-50">
+            <div className="absolute right-0 -bottom-10 z-50 hidden items-center gap-2 rounded-md bg-gray-800 px-3 py-1 text-sm whitespace-nowrap text-white group-hover:flex">
               {neuEmail}
               <FaCopy size={14} />
             </div>
@@ -58,13 +47,18 @@ const PersonCard: React.FC<PersonCardProps> = ({
       </div>
 
       {/* Profile Picture */}
-      <div className="flex justify-center mb-6">
-        <div className="relative w-24 h-24 rounded-full overflow-hidden border-4 border-red-600 shadow-md">
-          <img
-            src={url}
-            alt={`${firstName} ${lastName}`}
-            className="w-full h-full object-cover"
-          />
+      <div className="mb-6 flex justify-center">
+        <div className="relative h-24 w-24 overflow-hidden rounded-full border-4 border-red-600 shadow-md">
+          {url && (
+            <Image
+              src={url}
+              alt={`${firstName} ${lastName}`}
+              width={100}
+              height={100}
+              unoptimized={true}
+              className="h-full w-full object-cover"
+            />
+          )}
         </div>
       </div>
 
@@ -73,13 +67,13 @@ const PersonCard: React.FC<PersonCardProps> = ({
         <h2 className="text-xl font-bold text-black">
           {firstName} {lastName}
         </h2>
-        <p className="text-gray-600 text-sm mb-4">{title}</p>
+        <p className="mb-4 text-sm text-gray-600">{title}</p>
       </div>
 
       {/* Position */}
       {position && (
-        <div className="text-center mb-4">
-          <span className="bg-red-100 text-red-600 px-3 py-1 text-xs rounded-full">
+        <div className="mb-4 text-center">
+          <span className="rounded-full bg-red-100 px-3 py-1 text-xs text-red-600">
             {position}
           </span>
         </div>
@@ -90,12 +84,12 @@ const PersonCard: React.FC<PersonCardProps> = ({
         {/* Interests */}
         {interests && interests.length > 0 && (
           <div className="mb-4">
-            <h3 className="text-lg font-semibold text-black mb-2">Interests</h3>
+            <h3 className="mb-2 text-lg font-semibold text-black">Interests</h3>
             <div className="flex flex-wrap gap-2">
               {interests.map((interest, index) => (
                 <span
                   key={index}
-                  className="bg-gray-100 text-gray-800 px-3 py-1 text-xs rounded-full"
+                  className="rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-800"
                 >
                   {interest}
                 </span>
@@ -107,12 +101,12 @@ const PersonCard: React.FC<PersonCardProps> = ({
         {/* Skills */}
         {skills && skills.length > 0 && (
           <div>
-            <h3 className="text-lg font-semibold text-black mb-2">Skills</h3>
+            <h3 className="mb-2 text-lg font-semibold text-black">Skills</h3>
             <div className="flex flex-wrap gap-2">
               {skills.map((skill, index) => (
                 <span
                   key={index}
-                  className="bg-red-100 text-red-600 px-3 py-1 text-xs rounded-full"
+                  className="rounded-full bg-red-100 px-3 py-1 text-xs text-red-600"
                 >
                   {skill}
                 </span>
