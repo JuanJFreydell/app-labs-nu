@@ -30,14 +30,16 @@ export default function RootLayout({
       >
         {/* Navigation Bar */}
         <nav className="fixed top-0 right-0 z-50 flex h-14 w-full justify-between bg-black">
-          <div className="flex h-full w-fit flex-row">
-            <p className="flex h-full w-fit items-center bg-red-600 px-5 font-serif text-3xl text-white">
-              N
-            </p>
-            <p className="hidden h-full w-fit items-center px-10 font-serif text-3xl text-white sm:flex">
-              App Lab NU
-            </p>
-          </div>
+          <Link href="/" className="cursor-pointer">
+            <div className="flex h-full w-fit flex-row">
+              <p className="flex h-full w-fit items-center bg-red-600 px-5 font-serif text-3xl text-white">
+                N
+              </p>
+              <p className="hidden h-full w-fit items-center pl-10 font-serif text-3xl text-white sm:flex">
+                App Lab NU
+              </p>
+            </div>
+          </Link>
           <ul className="flex h-full flex-row items-center justify-center px-2 text-xl text-white">
             <Link href="/" className="cursor-pointer p-2 hover:bg-red-600">
               About
