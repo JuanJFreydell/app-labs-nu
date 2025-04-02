@@ -18,11 +18,22 @@ export const metadata: Metadata = {
   description: "Northeastern Students Build",
 };
 
+interface NavLink {
+  href: string;
+  title: string;
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const navLinks: NavLink[] = [
+    { href: "/", title: "About" },
+    { href: "/teams", title: "Groups" },
+    { href: "/members", title: "Members" },
+  ];
+
   return (
     <html lang="en">
       <body
@@ -41,21 +52,19 @@ export default function RootLayout({
             </div>
           </Link>
           <ul className="flex h-full flex-row items-center justify-center px-2 text-xl text-white">
-            <Link href="/" className="cursor-pointer p-2 hover:bg-red-600">
-              About
-            </Link>
-            <Link href="/teams" className="cursor-pointer p-2 hover:bg-red-600">
-              Groups
-            </Link>
-            <Link
-              href="/members"
-              className="cursor-pointer p-2 hover:bg-red-600"
-            >
-              Members
-            </Link>
+            {navLinks.map((link, index) => (
+              <li key={index}>
+                <Link
+                  href={link.href}
+                  className="cursor-pointer p-2 hover:bg-red-600"
+                >
+                  {link.title}
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
-        {children}
+        <main>{children}</main>
       </body>
     </html>
   );
