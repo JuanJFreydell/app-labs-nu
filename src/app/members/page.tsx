@@ -1,72 +1,53 @@
 import React from "react";
-import PersonCard from "@/components/personCard"; // Import the new PersonCard component
 import { board_members, students, advisors } from "@/variables/people";
+import MarketingPage from "@/components/marketing-page";
+import PersonCard from "@/components/person-card";
 
 export default function Members() {
+  const pageTitle = "Members";
+  const pageDescription =
+    "Meet our board, club members, and advisors that love building software.";
   return (
-    <div className="min-h-screen bg-gray-100">
-      {/* Board */}
-      <h2 className="mb-6 pt-20 text-center text-3xl font-bold text-black">
-        NU App Lab Board
-      </h2>
-      <div className="mb-10 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
-        {board_members.map((member, index) => (
-          <PersonCard
-            key={index}
-            url={member.url}
-            firstName={member.firstName}
-            lastName={member.lastName}
-            title={member.title}
-            interests={member.interests}
-            skills={member.skills}
-            position={member.position}
-            linkedin={member.linkedin}
-            neuEmail={member.neuEmail}
-          />
+    <MarketingPage pageTitle={pageTitle} pageDescription={pageDescription}>
+      <h2 className="mt-20 text-center text-3xl font-bold text-black">Board</h2>
+      <ul
+        role="list"
+        className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-6 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-8"
+      >
+        {board_members.map((member) => (
+          <li key={`${member.firstName}${member.lastName}`} className="flex">
+            <PersonCard props={member} />
+          </li>
         ))}
-      </div>
+      </ul>
 
-      {/* Students Section */}
-      <h2 className="mb-6 pt-20 text-center text-3xl font-bold text-black">
+      <h2 className="mt-20 text-center text-3xl font-bold text-black">
         Students
       </h2>
-      <div className="mb-10 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
-        {students.map((student, index) => (
-          <PersonCard
-            key={index}
-            url={student.url}
-            firstName={student.firstName}
-            lastName={student.lastName}
-            title={student.title}
-            interests={student.interests}
-            skills={student.skills}
-            position={student.position}
-            linkedin={student.linkedin}
-            neuEmail={student.neuEmail}
-          />
+      <ul
+        role="list"
+        className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-6 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-8"
+      >
+        {students.map((student) => (
+          <li key={`${student.firstName}${student.lastName}`} className="flex">
+            <PersonCard props={student} />
+          </li>
         ))}
-      </div>
+      </ul>
 
-      {/* Advisors Section */}
-      <h2 className="mb-6 pt-20 text-center text-3xl font-bold text-black">
+      <h2 className="mt-20 text-center text-3xl font-bold text-black">
         Advisors
       </h2>
-      <div className="grid grid-cols-1 gap-4 pb-10 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
-        {advisors.map((advisor, index) => (
-          <PersonCard
-            key={index}
-            url={advisor.url}
-            firstName={advisor.firstName}
-            lastName={advisor.lastName}
-            title={advisor.title}
-            interests={advisor.interests}
-            skills={advisor.skills}
-            position={advisor.position}
-            linkedin={advisor.linkedin}
-            neuEmail={advisor.neuEmail}
-          />
+      <ul
+        role="list"
+        className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-6 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-8"
+      >
+        {advisors.map((advisor) => (
+          <li key={`${advisor.firstName}${advisor.lastName}`} className="flex">
+            <PersonCard props={advisor} />
+          </li>
         ))}
-      </div>
-    </div>
+      </ul>
+    </MarketingPage>
   );
 }
