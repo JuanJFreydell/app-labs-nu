@@ -29,7 +29,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {/* Navigation Bar */}
-        <nav className="fixed top-0 right-0 z-50 flex h-14 w-full justify-between bg-black">
+        <nav className="sticky top-0 z-50 flex h-14 w-full justify-between bg-black">
           <Link href="/" className="cursor-pointer">
             <div className="flex h-full w-fit flex-row">
               <p className="flex h-full w-fit items-center bg-red-600 px-5 font-serif text-3xl text-white">
