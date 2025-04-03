@@ -18,44 +18,54 @@ export const metadata: Metadata = {
   description: "Northeastern Students Build",
 };
 
+interface NavLink {
+  href: string;
+  title: string;
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const navLinks: NavLink[] = [
+    { href: "/", title: "About" },
+    { href: "/teams", title: "Groups" },
+    { href: "/members", title: "Members" },
+  ];
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/* Navigation Bar */}
-        <nav className="fixed top-0 right-0 z-50 flex h-14 w-full justify-between bg-black">
-          <Link href="/" className="cursor-pointer">
-            <div className="flex h-full w-fit flex-row">
-              <p className="flex h-full w-fit items-center bg-red-600 px-5 font-serif text-3xl text-white">
-                N
-              </p>
-              <p className="hidden h-full w-fit items-center pr-2 pl-5 font-serif text-3xl text-white sm:flex">
-                App Lab NU
-              </p>
-            </div>
-          </Link>
-          <ul className="flex h-full flex-row items-center justify-center px-2 text-xl text-white">
-            <Link href="/" className="cursor-pointer p-2 hover:bg-red-600">
-              About
+        <header>
+          <nav className="sticky top-0 z-50 flex h-14 w-full justify-between bg-black">
+            <Link href="/" className="cursor-pointer">
+              <div className="flex h-full w-fit flex-row">
+                <p className="flex h-full w-fit items-center bg-red-600 px-5 font-serif text-3xl text-white">
+                  N
+                </p>
+                <p className="hidden h-full w-fit items-center pr-2 pl-5 font-serif text-3xl text-white sm:flex">
+                  App Lab NU
+                </p>
+              </div>
             </Link>
-            <Link href="/teams" className="cursor-pointer p-2 hover:bg-red-600">
-              Groups
-            </Link>
-            <Link
-              href="/members"
-              className="cursor-pointer p-2 hover:bg-red-600"
-            >
-              Members
-            </Link>
-          </ul>
-        </nav>
-        {children}
+            <ul className="flex h-full flex-row items-center justify-center px-2 text-xl text-white">
+              {navLinks.map((link, index) => (
+                <li key={index}>
+                  <Link
+                    href={link.href}
+                    className="cursor-pointer p-2 hover:bg-red-600"
+                  >
+                    {link.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </header>
+        <main>{children}</main>
       </body>
     </html>
   );

@@ -2,50 +2,49 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="flex h-fit flex-col bg-gradient-to-tr from-white from-40% to-fuchsia-100 to-80%">
+    <div className="min-h-screen bg-gradient-to-tr from-white from-40% to-fuchsia-100 to-80%">
       {/* Hero Section */}
-
-      <div className="flex h-dvh w-full flex-row">
-        <div className="flex h-full flex-col justify-center lg:w-1/2">
-          <p className="flex h-fit items-center px-5 pt-14 text-sm font-bold text-red-600 lg:px-20 lg:text-2xl">
-            Where we gather to launch software products
-          </p>
-          <h1 className="flex h-fit items-center px-5 text-5xl leading-tight font-bold lg:px-20 lg:text-8xl">
-            Northeastern Students Build
-          </h1>
-          <p className="flex h-fit items-center px-5 pt-4 text-zinc-600 lg:px-20 lg:text-2xl">
-            Join us to attend/host full-stack development seminars, find a team
-            to collaborate with on software projects, and drink boba🧋.
-          </p>
+      <section className="mx-auto flex h-screen max-w-7xl flex-col px-6 py-24 sm:py-32 lg:flex lg:items-center lg:gap-x-10 lg:px-8 lg:py-40">
+        <div className="flex h-full w-full flex-col lg:flex-row">
+          <div className="mt-16 h-full lg:mt-0 lg:flex lg:w-1/2 lg:flex-col">
+            <p className="text-base font-bold text-red-600 lg:text-2xl">
+              Where we gather to launch software products
+            </p>
+            <h1 className="text-5xl leading-tight font-bold lg:text-7xl">
+              Northeastern Students Build
+            </h1>
+            <p className="pt-4 text-zinc-600 lg:text-2xl">
+              Join us to attend/host full-stack development seminars, find a
+              team to collaborate with on software projects, and drink boba🧋.
+            </p>
+          </div>
+          <div className="hidden h-2/3 justify-center pt-12 md:flex lg:w-1/2">
+            <Image
+              src="/AppDevelopment.png"
+              alt="App Lab Visual"
+              width={300}
+              height={300}
+              priority
+              className="w-auto rounded-lg shadow-lg"
+            />
+          </div>
         </div>
-        <div className="hidden h-full w-1/2 items-center justify-center lg:flex">
-          <Image
-            src="/AppDevelopment.png"
-            alt="App Lab Visual"
-            width={300}
-            height={300}
-            priority
-            className="w-auto rounded-lg shadow-lg"
-          />
-        </div>
-      </div>
-
+      </section>
       {/* Calendar Section */}
-
-      <div className="h-dvh w-full items-center justify-center lg:flex">
-        <div className="flex w-full items-center justify-center text-center text-4xl font-bold text-gray-800 underline lg:w-1/2">
+      <section className="mx-auto flex max-w-7xl flex-col items-center px-6 py-24 sm:py-32 lg:flex-row lg:gap-x-10 lg:px-8 lg:py-40">
+        <div className="w-full text-center text-4xl font-bold text-gray-800 underline lg:w-1/2">
           Event Calendar
         </div>
-        <div className="flex h-full w-dvw items-center justify-center rounded-lg lg:h-3/4 lg:w-1/2">
+        <div className="mx-auto mt-8 flex h-[31.25rem] w-full items-center justify-center rounded-lg lg:mt-0 lg:w-2/3">
           <iframe
             src="https://lu.ma/embed/calendar/cal-GUaschGEOamfwOu/events?lt=light"
-            width="95%"
-            height="90%"
-            className="rounded-lg border-2"
+            width="100%"
+            height="100%"
+            className="h-full rounded-lg border-2"
             aria-hidden="false"
           ></iframe>
         </div>
-      </div>
+      </section>
     </div>
   );
 }
