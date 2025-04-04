@@ -1,20 +1,21 @@
 "use client";
+
 import Image from "next/image";
-import { useRef } from "react";
 import { login, signup } from "./actions";
+import { useForm } from "@tanstack/react-form";
+import { loginSchema } from "@/types/zod";
 
 export default function LoginPage() {
-  const formRef = useRef<HTMLFormElement>(null);
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      if (formRef) formRef.current?.requestSubmit();
-    }
-  };
+  const form = useForm({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+    validators: { onSubmit: loginSchema },
+  });
 
   return (
-    <div className="mx-auto flex h-[calc(100vh-var(--spacing-header))] max-w-7xl flex-1">
+    <div className="mx-auto flex h-[calc(100vh-var(--spacing-header))] max-w-7xl flex-1 bg-gray-100">
       <div className="flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
         <div className="mx-auto w-full max-w-sm lg:w-96">
           <div>
@@ -32,44 +33,74 @@ export default function LoginPage() {
 
           <div className="mt-10">
             <div>
-              <form ref={formRef} method="POST" className="space-y-6">
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm/6 font-medium text-gray-900"
-                  >
-                    Email address
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      required
-                      autoComplete="email"
-                      className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-red-600 sm:text-sm/6"
-                    />
-                  </div>
-                </div>
+              <form
+                // ref={formRef}
+                // method="POST"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                }}
+                className="space-y-6"
+              >
+                <form.Field name="email">
+                  {(field) => (
+                    <div>
+                      <label
+                        htmlFor="email"
+                        className="block text-sm/6 font-medium text-gray-900"
+                      >
+                        Email address
+                      </label>
+                      <div className="mt-2">
+                        <input
+                          id="email"
+                          name="email"
+                          type="email"
+                          value={field.state.value}
+                          onChange={(e) => field.handleChange(e.target.value)}
+                          required
+                          autoComplete="email"
+                          className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-red-600 sm:text-sm/6"
+                        />
+                      </div>
+                      {field.state.meta.errors && (
+                        <div className="text-sm text-red-500">
+                          {field.state.meta.errors[0]?.message}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </form.Field>
+                <form.Field name="password">
+                  {(field) => (
+                    <div>
+                      <label
+                        htmlFor="password"
+                        className="block text-sm/6 font-medium text-gray-900"
+                      >
+                        Password
+                      </label>
+                      <div className="mt-2">
+                        <input
+                          id="password"
+                          name="password"
+                          type="password"
+                          value={field.state.value}
+                          onChange={(e) => field.handleChange(e.target.value)}
+                          required
+                          autoComplete="current-password"
+                          className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-red-600 sm:text-sm/6"
+                        />
+                      </div>
 
-                <div>
-                  <label
-                    htmlFor="password"
-                    className="block text-sm/6 font-medium text-gray-900"
-                  >
-                    Password
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      id="password"
-                      name="password"
-                      type="password"
-                      required
-                      autoComplete="current-password"
-                      className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-red-600 sm:text-sm/6"
-                    />
-                  </div>
-                </div>
+                      {field.state.meta.errors && (
+                        <div className="text-sm text-red-500">
+                          {field.state.meta.errors[0]?.message}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </form.Field>
 
                 <div className="flex items-center justify-between">
                   <div className="flex gap-3">
@@ -125,7 +156,7 @@ export default function LoginPage() {
                   <button
                     type="submit"
                     formAction={login}
-                    onKeyDown={handleKeyDown}
+                    onClick={form.handleSubmit}
                     className="flex w-full cursor-pointer justify-center rounded-md bg-red-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-red-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
                   >
                     Log in
