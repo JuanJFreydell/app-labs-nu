@@ -1,8 +1,11 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+
+@theme {
+    --background: #ffffff;
+    --foreground: #171717;
+
+    --spacing-header: 3.5rem;
 }
 
 body {
