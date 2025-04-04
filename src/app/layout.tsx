@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { createClient } from "@/utils/supabase/server";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/styles/globals.css";
 import Link from "next/link";
@@ -23,24 +24,34 @@ interface NavLink {
   title: string;
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const supabase = await createClient();
+
+  const { data: auth } = await supabase.auth.getUser();
+
   const navLinks: NavLink[] = [
     { href: "/", title: "About" },
     { href: "/teams", title: "Groups" },
     { href: "/members", title: "Members" },
+    { href: "/login", title: "Log In" },
   ];
 
+  if (auth?.user) {
+    navLinks.pop();
+    navLinks.push({ href: "/profile", title: "Profile" });
+  }
+
   return (
-    <html lang="en">
+    <html lang="en" className="h-full">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       >
-        <header>
-          <nav className="sticky top-0 z-50 flex h-14 w-full justify-between bg-black">
+        <header className="sticky top-0 z-50">
+          <nav className="h-header flex w-full justify-between bg-black">
             <Link href="/" className="cursor-pointer">
               <div className="flex h-full w-fit flex-row">
                 <p className="flex h-full w-fit items-center bg-red-600 px-5 font-serif text-3xl text-white">
@@ -56,7 +67,7 @@ export default function RootLayout({
                 <li key={index}>
                   <Link
                     href={link.href}
-                    className="cursor-pointer p-2 hover:bg-red-600"
+                    className="cursor-pointer p-2 hover:rounded-sm hover:bg-red-600"
                   >
                     {link.title}
                   </Link>
