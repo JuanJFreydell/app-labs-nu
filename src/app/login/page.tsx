@@ -165,10 +165,23 @@ export default function LoginPage() {
                   onSubmit={() => {
                     formOtp.handleSubmit();
                   }}
+                  className="flex flex-col items-center gap-y-3"
                 >
                   <formOtp.Field name="otp">
                     {(field) => (
                       <div>
+                        {field.state.meta.errors && (
+                          <div className="text-sm text-red-500 mb-2">
+                            {field.state.meta.errors[0]?.message}
+                          </div>
+                        )}
+                        {otpState &&
+                          otpState.values &&
+                          otpState.values[0] === 403 && (
+                            <div className="text-sm text-red-500 mb-2">
+                              {otpState.values[1]}
+                            </div>
+                          )}
                         <InputOTP
                           id="otp"
                           name="otp"
@@ -176,6 +189,10 @@ export default function LoginPage() {
                           onChange={(value) => {
                             field.handleChange(value);
                           }}
+                          pasteTransformer={(pastedText: string) =>
+                            pastedText.trim().replaceAll("-", "")
+                          }
+                          minLength={6}
                           maxLength={6}
                         >
                           <InputOTPGroup>

@@ -1,6 +1,7 @@
 "use server";
 
 import {
+  ServerFormState,
   ServerValidateError,
   createServerValidate,
 } from "@tanstack/react-form/nextjs";
@@ -68,6 +69,13 @@ export async function verifyOtp(prev: unknown, formData: FormData) {
       type: "email",
     });
 
+    // Invalid token gives 403
+    if (error?.status === 403) {
+      return { values: [403, "Invalid token"] } as ServerFormState<
+        string[],
+        undefined
+      >;
+    }
     // Delete email cookie when we are done authenticating
     cookieStore.delete("email");
 
