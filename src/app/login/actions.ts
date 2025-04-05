@@ -1,90 +1,90 @@
 "use server";
-import { loginSchema } from "@/types/zod";
+
+import {
+  ServerValidateError,
+  createServerValidate,
+} from "@tanstack/react-form/nextjs";
+import { emailFormOpts, otpFormOpts } from "./shared";
+import { emailSchema, otpSchema } from "@/types/zod";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-
+import { cookies } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
+import { SignInWithPasswordlessCredentials } from "@supabase/supabase-js";
 
-// TODO: Only allow users with @northeastern.edu email addresses
-export async function login(formData: FormData) {
-  const supabase = await createClient();
+const serverValidateEmail = createServerValidate({
+  ...emailFormOpts,
+  onServerValidate: emailSchema,
+});
 
-  // type-casting here for convenience
-  // in practice, you should validate your inputs
-  // const data = {
-  //   email: formData.get("email") as string,
-  //   password: formData.get("password") as string,
-  // };
-  const rawFormData = {
-    email: formData.get("email"),
-    password: formData.get("password"),
-    "remember-me": formData.get("remember-me") === "on",
-  };
+const serverValidateLogin = createServerValidate({
+  ...otpFormOpts,
+  onServerValidate: otpSchema,
+});
 
-  // Validate with Zod
-  const validationResult = loginSchema.safeParse(rawFormData);
+export async function requestOtp(prev: unknown, formData: FormData) {
+  try {
+    const validData = await serverValidateEmail(formData);
 
-  if (!validationResult.success) {
-    // Return validation errors
-    console.log(validationResult.error.format().email?._errors[0]);
-    return;
-    // return {
-    //   success: false,
-    //   errors: validationResult.error.format(),
-    // };
+    // Store email as server cookie if valid
+    const cookieStore = await cookies();
+    cookieStore.set("email", validData.email);
+    const supabase = await createClient();
+
+    // Initial call requesting OTP should return an error
+    const { error } = await supabase.auth.signInWithOtp(
+      validData as SignInWithPasswordlessCredentials,
+    );
+
+    if (error) {
+      return;
+    }
+  } catch (e) {
+    if (e instanceof ServerValidateError) {
+      return e.formState;
+    }
+
+    // Some other error occurred while validating your form
+    throw e;
   }
-
-  // Validated data is available in validationResult.data
-  const validatedData = validationResult.data;
-
-  const { error } = await supabase.auth.signInWithPassword(validatedData);
-
-  if (error) {
-    redirect("/error");
-  }
-
-  revalidatePath("/", "layout");
-  redirect("/");
 }
 
-export async function signup(formData: FormData) {
-  const supabase = await createClient();
+export async function verifyOtp(prev: unknown, formData: FormData) {
+  try {
+    const validData = await serverValidateLogin(formData);
 
-  // type-casting here for convenience
-  // in practice, you should validate your inputs
-  // const data = {
-  //   email: formData.get("email") as string,
-  //   password: formData.get("password") as string,
-  // };
+    // Grab validated email cookie
+    const cookieStore = await cookies();
+    const email = cookieStore.get("email");
 
-  const rawFormData = {
-    email: formData.get("email"),
-    password: formData.get("password"),
-    "remember-me": formData.get("remember-me") === "on",
-  };
+    const supabase = await createClient();
 
-  // Validate with Zod
-  const validationResult = loginSchema.safeParse(rawFormData);
+    const {
+      data: { session },
+      error,
+    } = await supabase.auth.verifyOtp({
+      email: email?.value as string,
+      token: validData.otp,
+      type: "email",
+    });
 
-  if (!validationResult.success) {
-    // Return validation errors
-    //
-    console.log(validationResult.error.format().email?._errors[0]);
-    return;
-    // return {
-    //   success: false,
-    //   errors: validationResult.error.format(),
-    // };
+    // Delete email cookie when we are done authenticating
+    cookieStore.delete("email");
+
+    if (error) {
+      redirect("/error");
+    }
+
+    if (session) {
+      revalidatePath("/", "layout");
+      redirect("/");
+    }
+  } catch (e) {
+    if (e instanceof ServerValidateError) {
+      return e.formState;
+    }
+
+    // Some other error occurred while validating your form
+    throw e;
   }
-
-  // Validated data is available in validationResult.data
-  const validatedData = validationResult.data;
-  const { error } = await supabase.auth.signUp(validatedData);
-
-  if (error) {
-    redirect("/error");
-  }
-
-  revalidatePath("/", "layout");
-  redirect("/");
 }
