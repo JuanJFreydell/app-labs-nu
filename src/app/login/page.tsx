@@ -8,13 +8,14 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 import { requestOtp, verifyOtp } from "./actions";
-import { useState, useActionState } from "react";
+import { useState, useActionState, useEffect, startTransition } from "react";
 import { initialFormState } from "@tanstack/react-form/nextjs";
 import { mergeForm, useForm, useTransform } from "@tanstack/react-form";
 import { emailFormOpts, otpFormOpts } from "./shared";
 
 export default function LoginPage() {
   const [isEmailSubmitted, setIsEmailSubmitted] = useState(false);
+  const [otp, setOtp] = useState("");
   const [emailState, emailAction] = useActionState(
     requestOtp,
     initialFormState,
@@ -41,6 +42,14 @@ export default function LoginPage() {
     if (emailState?.errors.length) return;
     setIsEmailSubmitted(true);
   }
+
+  useEffect(() => {
+    if (otp.length === 6) {
+      const formData = new FormData();
+      formData.append("otp", otp);
+      startTransition(() => otpAction(formData));
+    }
+  }, [otp]);
 
   return (
     <div className="mx-auto flex h-[calc(100vh-var(--spacing-header))] max-w-7xl flex-1 bg-gray-100">
@@ -170,24 +179,20 @@ export default function LoginPage() {
                   <formOtp.Field name="otp">
                     {(field) => (
                       <div>
-                        {field.state.meta.errors && (
-                          <div className="text-sm text-red-500 mb-2">
-                            {field.state.meta.errors[0]?.message}
-                          </div>
-                        )}
-                        {otpState &&
-                          otpState.values &&
-                          otpState.values[0] === 403 && (
-                            <div className="text-sm text-red-500 mb-2">
-                              {otpState.values[1]}
-                            </div>
-                          )}
+                        <label
+                          htmlFor="otp"
+                          className="mb-2 block text-base/6 font-medium text-gray-900"
+                        >
+                          Enter the one time code in your email
+                        </label>
+
                         <InputOTP
                           id="otp"
                           name="otp"
                           value={field.state.value}
                           onChange={(value) => {
                             field.handleChange(value);
+                            setOtp(value);
                           }}
                           pasteTransformer={(pastedText: string) =>
                             pastedText.trim().replaceAll("-", "")
@@ -207,31 +212,21 @@ export default function LoginPage() {
                             <InputOTPSlot index={5} />
                           </InputOTPGroup>
                         </InputOTP>
-
                         {field.state.meta.errors && (
                           <div className="text-sm text-red-500">
                             {field.state.meta.errors[0]?.message}
                           </div>
                         )}
+                        {otpState &&
+                          otpState.values &&
+                          otpState.values[0] === 403 && (
+                            <div className="text-sm text-red-500">
+                              {otpState.values[1]}
+                            </div>
+                          )}
                       </div>
                     )}
                   </formOtp.Field>
-                  <formOtp.Subscribe
-                    selector={(formState) => [
-                      formState.canSubmit,
-                      formState.isSubmitting,
-                    ]}
-                  >
-                    {([canSubmit, isSubmitting]) => (
-                      <button
-                        type="submit"
-                        disabled={!canSubmit}
-                        className="flex w-full cursor-pointer justify-center rounded-md bg-red-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-red-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
-                      >
-                        {isSubmitting ? "..." : "Log In"}
-                      </button>
-                    )}
-                  </formOtp.Subscribe>
                 </form>
               )}
             </div>
