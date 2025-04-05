@@ -199,6 +199,7 @@ export default function LoginPage() {
                           }
                           minLength={6}
                           maxLength={6}
+                          autoFocus
                         >
                           <InputOTPGroup>
                             <InputOTPSlot index={0} />
