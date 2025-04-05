@@ -23,7 +23,7 @@ const serverValidateLogin = createServerValidate({
   onServerValidate: otpSchema,
 });
 
-export async function requestOtp(prev: unknown, formData: FormData) {
+export async function requestOtp(_prev: unknown, formData: FormData) {
   try {
     const validData = await serverValidateEmail(formData);
 
@@ -50,7 +50,7 @@ export async function requestOtp(prev: unknown, formData: FormData) {
   }
 }
 
-export async function verifyOtp(prev: unknown, formData: FormData) {
+export async function verifyOtp(_prev: unknown, formData: FormData) {
   try {
     const validData = await serverValidateLogin(formData);
 
