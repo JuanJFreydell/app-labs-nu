@@ -21,22 +21,12 @@ const navigation = [
   { href: "/members", name: "Members" },
 ];
 
-const user = {
-  name: "Chelsea Hagon",
-  email: "chelsea.hagon@example.com",
-  imageUrl:
-    "https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-};
 const userNavigation = [
   { name: "Your Profile", href: "/profile" },
-  { name: "Settings", href: "#" },
+  { name: "Settings", href: "/settings" },
 ];
 
-export default function Header({
-  isUserLoggedIn,
-}: {
-  isUserLoggedIn: boolean;
-}) {
+export default function Header({ user }: { user: BasicUserInfo | undefined }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -82,22 +72,29 @@ export default function Header({
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          {isUserLoggedIn ? (
+          {user && user.isProfileComplete ? (
             <>
               <Menu as="div" className="relative">
-                <MenuButton className="-m-1.5 flex items-center p-1.5">
+                <MenuButton className="-m-1.5 flex cursor-pointer items-center p-1.5">
                   <span className="sr-only">Open user menu</span>
-                  <img
-                    alt=""
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    className="size-8 rounded-full bg-gray-50"
-                  />
+
+                  {user.avatarUrl ? (
+                    <Image
+                      alt={`${user?.firstName} ${user?.lastName}`}
+                      src={user?.avatarUrl}
+                      width={32}
+                      height={32}
+                      className="size-8 rounded-full bg-gray-50"
+                    />
+                  ) : (
+                    <span className="mx-auto flex size-8 items-center justify-center rounded-full bg-gray-200 text-xl font-semibold sm:size-36">{`${user.firstName ? user.firstName[0] : ""}${user.lastName ? user.lastName[0] : ""}`}</span>
+                  )}
                   <span className="hidden lg:flex lg:items-center">
                     <span
                       aria-hidden="true"
                       className="ml-4 text-sm/6 font-semibold text-gray-900"
                     >
-                    {user.name}
+                      {`${user.firstName} ${user.lastName}`}
                     </span>
                     <HiChevronDown
                       aria-hidden="true"
@@ -122,7 +119,7 @@ export default function Header({
                   <MenuItem>
                     <button
                       onClick={signOut}
-                      className="block px-3 py-1 text-sm/6 text-gray-900 data-focus:bg-gray-50 data-focus:outline-hidden"
+                      className="block w-full cursor-pointer px-3 py-1 text-left text-sm/6 text-gray-900 data-focus:bg-gray-50 data-focus:outline-hidden"
                     >
                       Sign Out
                     </button>
@@ -184,19 +181,25 @@ export default function Header({
                   </Link>
                 ))}
               </div>
-              {isUserLoggedIn ? (
+              {user && user.isProfileComplete ? (
                 <div className="border-t border-gray-200 pt-4 pb-3">
                   <div className="mx-auto flex max-w-3xl items-center px-4 sm:px-6">
                     <div className="shrink-0">
-                      <img
-                        alt=""
-                        src={user.imageUrl}
-                        className="size-10 rounded-full"
-                      />
+                      {user.avatarUrl ? (
+                        <Image
+                          alt={`${user.firstName} ${user.lastName}`}
+                          src={user?.avatarUrl}
+                          width={40}
+                          height={40}
+                          className="size-10 rounded-full"
+                        />
+                      ) : (
+                        <span className="mx-auto flex size-10 items-center justify-center rounded-full bg-gray-200 text-xl font-semibold sm:size-36">{`${user.firstName ? user.firstName[0] : ""}${user.lastName ? user.lastName[0] : ""}`}</span>
+                      )}
                     </div>
                     <div className="ml-3">
                       <div className="text-base font-medium text-gray-800">
-                        {user.name}
+                        {`${user.firstName} ${user.lastName}`}
                       </div>
                       <div className="text-sm font-medium text-gray-500">
                         {user.email}
@@ -214,7 +217,7 @@ export default function Header({
                       </a>
                     ))}
                     <button
-                      className="block rounded-md px-3 py-2 text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900"
+                      className="block w-full cursor-pointer rounded-md px-3 py-2 text-left text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900"
                       onClick={() => signOut()}
                     >
                       Sign Out
