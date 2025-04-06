@@ -14,6 +14,7 @@ import Link from "next/link";
 import { HiOutlineBars3, HiOutlineXMark, HiChevronDown } from "react-icons/hi2";
 import { signOut } from "@/supabase/sign-out";
 import { BasicUserInfo } from "@/zod";
+import { usePathname, redirect } from "next/navigation";
 
 const navigation = [
   { href: "/", name: "About" },
@@ -28,6 +29,11 @@ const userNavigation = [
 
 export default function Header({ user }: { user: BasicUserInfo | undefined }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const path = usePathname();
+
+  if (user && !user.isProfileComplete && path !== "/settings") {
+    redirect("/settings");
+  }
 
   return (
     <header className="h-header sticky inset-0 top-0 z-10 bg-white shadow-sm">
