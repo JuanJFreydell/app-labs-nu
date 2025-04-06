@@ -1,58 +1,51 @@
+import { userSelectSchema } from "@/db/schemas";
 import { redirect } from "next/navigation";
-
-import { eq } from "drizzle-orm";
-import { db, users } from "@/db";
-
-import { createClient } from "@/utils/supabase/server";
+import {
+  getAuthenticatedUserProfile,
+  getAllProjectsForUser,
+} from "@/db/handlers";
 
 export default async function ProfilePage() {
-  const supabase = await createClient();
+  const user = await getAuthenticatedUserProfile();
 
-  const { data: auth, error } = await supabase.auth.getUser();
-  if (error || !auth?.user) {
+  if (!user) {
     redirect("/login");
   }
-  const userProfile = await db
-    .select()
-    .from(users)
-    .where(eq(users.id, auth.user.id))
-    .limit(1);
 
-  const {
-    id,
-    email,
-    firstName,
-    lastName,
-    jobTitle,
-    clubPosition,
-    avatarUrl,
-    // preferences,
-    isProfileComplete,
-    // createdAt,
-    // lastLoginAt,
-    // updatedAt,
-    linkedinUrl,
-    githubUrl,
-    skills,
-    interests,
-  } = userProfile[0];
-  console.log(userProfile);
+  const parsedUser = userSelectSchema.parse(user);
+  const projects = await getAllProjectsForUser(user.id);
 
   return (
     <div>
       <ul>
-        <li>id: {id}</li>
-        <li>email: {email}</li>
-        <li>firstName: {firstName}</li>
-        <li>lastName: {lastName}</li>
-        <li>jobTitle: {jobTitle}</li>
-        <li>clubPosition: {clubPosition}</li>
-        <li>avatarUrl: {avatarUrl}</li>
-        <li>isProfileComplete: {isProfileComplete}</li>
-        <li>linkedinUrl: {linkedinUrl}</li>
-        <li>githubUrl: {githubUrl}</li>
-        <li>skills: {skills}</li>
-        <li>interes: {interests}</li>
+        <li>id: {parsedUser.id}</li>
+        <li>Name: {`${parsedUser.firstName} ${parsedUser.lastName}`}</li>
+        <li>
+          Role:{" "}
+          {parsedUser.clubRole
+            .split("_")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ")}
+        </li>
+      </ul>
+      <h2 className="text-2xl font-bold">Projects</h2>
+      <ul>
+        {projects?.map((project) => (
+          <div key={project.id}>
+            <div className="text-xl font-semibold">{project?.title}</div>
+            <div>{project?.description}</div>
+            <div>{project?.githubUrl}</div>
+            <div>{project?.techStack?.map((item) => item + " ")}</div>
+            <h3 className="text-lg font-bold">Team Members</h3>
+            {project.teamMembers.map((teamMember) => (
+              <div key={teamMember.userId}>
+                <div>{`${teamMember.user.firstName} ${teamMember.user.lastName}`}</div>
+                <div>{teamMember.user.avatarUrl}</div>
+                <div>{teamMember.user.interests}</div>
+              </div>
+            ))}
+          </div>
+        ))}
       </ul>
     </div>
   );
