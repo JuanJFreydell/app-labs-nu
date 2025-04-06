@@ -6,6 +6,7 @@ import {
   jsonb,
   boolean,
   pgEnum,
+  varchar,
 } from "drizzle-orm/pg-core";
 import {
   createSelectSchema,
@@ -23,15 +24,15 @@ export const users = pgTable("users", {
   id: uuid("id").primaryKey().notNull(),
 
   email: text("email").notNull(),
-  firstName: text("first_name"),
-  lastName: text("last_name"),
+  firstName: varchar("first_name", { length: 100 }),
+  lastName: varchar("last_name", { length: 100 }),
   avatarUrl: text("avatar_url"),
-  jobTitle: text("job_title"),
+  jobTitle: varchar("job_title", { length: 100 }),
   clubRole: clubRoleEnum("club_role").default("student").notNull(),
   linkedinUrl: text("linkedin_url"),
   githubUrl: text("github_url"),
-  interests: text("interests").array(),
-  skills: text("skills").array(),
+  interests: varchar("interests", { length: 100 }).array(),
+  skills: varchar("skills", { length: 100 }).array(),
 
   preferences: jsonb("preferences").default({}),
   isProfileComplete: boolean("is_profile_complete").default(false),
