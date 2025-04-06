@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import Header from "@/components/header";
 import { Geist, Geist_Mono } from "next/font/google";
+import { getAuthenticatedUserProfileBasic } from "@/db/handlers";
 import "@/styles/globals.css";
-import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,54 +19,20 @@ export const metadata: Metadata = {
   description: "Northeastern Students Build",
 };
 
-interface NavLink {
-  href: string;
-  title: string;
-}
-
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const navLinks: NavLink[] = [
-    { href: "/", title: "About" },
-    { href: "/teams", title: "Groups" },
-    { href: "/members", title: "Members" },
-  ];
+  const user = await getAuthenticatedUserProfileBasic();
 
   return (
-    <html lang="en">
+    <html lang="en" className="min-h-screen">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       >
-        <header>
-          <nav className="sticky top-0 z-50 flex h-14 w-full justify-between bg-black">
-            <Link href="/" className="cursor-pointer">
-              <div className="flex h-full w-fit flex-row">
-                <p className="flex h-full w-fit items-center bg-red-600 px-5 font-serif text-3xl text-white">
-                  N
-                </p>
-                <p className="hidden h-full w-fit items-center pr-2 pl-5 font-serif text-3xl text-white sm:flex">
-                  App Lab NU
-                </p>
-              </div>
-            </Link>
-            <ul className="flex h-full flex-row items-center justify-center px-2 text-xl text-white">
-              {navLinks.map((link, index) => (
-                <li key={index}>
-                  <Link
-                    href={link.href}
-                    className="cursor-pointer p-2 hover:bg-red-600"
-                  >
-                    {link.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </header>
-        <main>{children}</main>
+        <Header user={user} />
+        <main className="bg-gray-100">{children}</main>
       </body>
     </html>
   );

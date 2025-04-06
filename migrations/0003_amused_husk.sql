@@ -1,0 +1,1 @@
+ALTER TABLE "users" RENAME COLUMN "club_position" TO "club_role";

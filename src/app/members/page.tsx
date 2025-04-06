@@ -7,6 +7,7 @@ export default function Members() {
   const pageTitle = "Members";
   const pageDescription =
     "Meet our board, club members, and advisors that love building software.";
+
   return (
     <MarketingPage pageTitle={pageTitle} pageDescription={pageDescription}>
       <h2 className="mt-20 text-center text-3xl font-bold text-black">Board</h2>
