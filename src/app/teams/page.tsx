@@ -7,6 +7,7 @@ export default function TeamsList() {
   const pageTitle = "Active Teams";
   const pageDescription =
     "Here are some of the projects that members of App Lab Northeastern are currently working on.";
+
   return (
     <MarketingPage pageTitle={pageTitle} pageDescription={pageDescription}>
       {/* Team Cards */}
