@@ -93,7 +93,7 @@ export default function Header({ user }: { user: BasicUserInfo | undefined }) {
                       className="size-8 rounded-full bg-gray-50"
                     />
                   ) : (
-                    <span className="mx-auto flex size-8 items-center justify-center rounded-full bg-gray-200 text-xl font-semibold sm:size-36">{`${user.firstName ? user.firstName[0] : ""}${user.lastName ? user.lastName[0] : ""}`}</span>
+                    <span className="mx-auto flex size-8 items-center justify-center rounded-full bg-gray-200 text-xs font-semibold">{`${user.firstName ? user.firstName[0] : ""}${user.lastName ? user.lastName[0] : ""}`}</span>
                   )}
                   <span className="hidden lg:flex lg:items-center">
                     <span
@@ -208,7 +208,7 @@ export default function Header({ user }: { user: BasicUserInfo | undefined }) {
                             className="size-10 rounded-full"
                           />
                         ) : (
-                          <span className="mx-auto flex size-10 items-center justify-center rounded-full bg-gray-200 text-xl font-semibold sm:size-36">{`${user.firstName ? user.firstName[0] : ""}${user.lastName ? user.lastName[0] : ""}`}</span>
+                          <span className="mx-auto flex size-10 items-center justify-center rounded-full bg-gray-200 text-sm font-semibold">{`${user.firstName ? user.firstName[0] : ""}${user.lastName ? user.lastName[0] : ""}`}</span>
                         )}
                       </div>
                       <div className="ml-3">
