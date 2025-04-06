@@ -72,8 +72,8 @@ export default function Header({ user }: { user: BasicUserInfo | undefined }) {
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          {user && user.isProfileComplete ? (
-            <>
+          {user ? (
+            user.isProfileComplete ? (
               <Menu as="div" className="relative">
                 <MenuButton className="-m-1.5 flex cursor-pointer items-center p-1.5">
                   <span className="sr-only">Open user menu</span>
@@ -126,7 +126,14 @@ export default function Header({ user }: { user: BasicUserInfo | undefined }) {
                   </MenuItem>
                 </MenuItems>
               </Menu>
-            </>
+            ) : (
+              <button
+                onClick={signOut}
+                className="cursor-pointer text-sm/6 font-semibold text-gray-500 hover:text-gray-900"
+              >
+                Sign Out<span aria-hidden="true">&rarr;</span>
+              </button>
+            )
           ) : (
             <Link
               href="/login"
@@ -181,41 +188,52 @@ export default function Header({ user }: { user: BasicUserInfo | undefined }) {
                   </Link>
                 ))}
               </div>
-              {user && user.isProfileComplete ? (
-                <div className="border-t border-gray-200 pt-4 pb-3">
-                  <div className="mx-auto flex max-w-3xl items-center px-4 sm:px-6">
-                    <div className="shrink-0">
-                      {user.avatarUrl ? (
-                        <Image
-                          alt={`${user.firstName} ${user.lastName}`}
-                          src={user?.avatarUrl}
-                          width={40}
-                          height={40}
-                          className="size-10 rounded-full"
-                        />
-                      ) : (
-                        <span className="mx-auto flex size-10 items-center justify-center rounded-full bg-gray-200 text-xl font-semibold sm:size-36">{`${user.firstName ? user.firstName[0] : ""}${user.lastName ? user.lastName[0] : ""}`}</span>
-                      )}
+              {user ? (
+                user.isProfileComplete ? (
+                  <div className="border-t border-gray-200 pt-4 pb-3">
+                    <div className="mx-auto flex max-w-3xl items-center px-4 sm:px-6">
+                      <div className="shrink-0">
+                        {user.avatarUrl ? (
+                          <Image
+                            alt={`${user.firstName} ${user.lastName}`}
+                            src={user?.avatarUrl}
+                            width={40}
+                            height={40}
+                            className="size-10 rounded-full"
+                          />
+                        ) : (
+                          <span className="mx-auto flex size-10 items-center justify-center rounded-full bg-gray-200 text-xl font-semibold sm:size-36">{`${user.firstName ? user.firstName[0] : ""}${user.lastName ? user.lastName[0] : ""}`}</span>
+                        )}
+                      </div>
+                      <div className="ml-3">
+                        <div className="text-base font-medium text-gray-800">
+                          {`${user.firstName} ${user.lastName}`}
+                        </div>
+                        <div className="text-sm font-medium text-gray-500">
+                          {user.email}
+                        </div>
+                      </div>
                     </div>
-                    <div className="ml-3">
-                      <div className="text-base font-medium text-gray-800">
-                        {`${user.firstName} ${user.lastName}`}
-                      </div>
-                      <div className="text-sm font-medium text-gray-500">
-                        {user.email}
-                      </div>
+                    <div className="mx-auto mt-3 max-w-3xl space-y-1 px-2 sm:px-4">
+                      {userNavigation.map((item) => (
+                        <a
+                          key={item.name}
+                          href={item.href}
+                          className="block rounded-md px-3 py-2 text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900"
+                        >
+                          {item.name}
+                        </a>
+                      ))}
+                      <button
+                        className="block w-full cursor-pointer rounded-md px-3 py-2 text-left text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900"
+                        onClick={() => signOut()}
+                      >
+                        Sign Out
+                      </button>
                     </div>
                   </div>
-                  <div className="mx-auto mt-3 max-w-3xl space-y-1 px-2 sm:px-4">
-                    {userNavigation.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className="block rounded-md px-3 py-2 text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900"
-                      >
-                        {item.name}
-                      </a>
-                    ))}
+                ) : (
+                  <div className="py-6">
                     <button
                       className="block w-full cursor-pointer rounded-md px-3 py-2 text-left text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900"
                       onClick={() => signOut()}
@@ -223,7 +241,7 @@ export default function Header({ user }: { user: BasicUserInfo | undefined }) {
                       Sign Out
                     </button>
                   </div>
-                </div>
+                )
               ) : (
                 <div className="py-6">
                   <Link
