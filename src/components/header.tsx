@@ -12,7 +12,8 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { HiOutlineBars3, HiOutlineXMark, HiChevronDown } from "react-icons/hi2";
-import { signOut } from "@/utils/supabase/sign-out";
+import { signOut } from "@/supabase/sign-out";
+import { BasicUserInfo } from "@/zod";
 
 const navigation = [
   { href: "/", name: "About" },

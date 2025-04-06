@@ -10,7 +10,7 @@ import { emailSchema, otpSchema } from "@/types/zod";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
-import { createClient } from "@/utils/supabase/server";
+import { createClient } from "@/supabase/server";
 import { SignInWithPasswordlessCredentials } from "@supabase/supabase-js";
 
 const serverValidateEmail = createServerValidate({
