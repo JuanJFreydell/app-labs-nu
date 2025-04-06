@@ -6,7 +6,7 @@ import {
   createServerValidate,
 } from "@tanstack/react-form/nextjs";
 import { emailFormOpts, otpFormOpts } from "./shared";
-import { emailSchema, otpSchema } from "@/types/zod";
+import { emailSchema, otpSchema } from "@/zod";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";

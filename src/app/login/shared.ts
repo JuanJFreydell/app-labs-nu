@@ -1,5 +1,5 @@
 import { formOptions } from "@tanstack/react-form/nextjs";
-import { emailSchema, otpSchema } from "@/types/zod";
+import { emailSchema, otpSchema } from "@/zod";
 
 export const emailFormOpts = formOptions({
   defaultValues: {
