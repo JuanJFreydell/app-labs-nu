@@ -13,6 +13,7 @@ import {
   createInsertSchema,
   createUpdateSchema,
 } from "drizzle-zod";
+import { z } from "zod";
 
 const clubRoleEnum = pgEnum("club_role", [
   "board_member",
@@ -44,5 +45,10 @@ export const users = pgTable("users", {
 }).enableRLS();
 
 export const userInsertSchema = createInsertSchema(users);
+export type userInsertSchema = z.infer<typeof userInsertSchema>;
+
 export const userSelectSchema = createSelectSchema(users);
+export type userSelectSchema = z.infer<typeof userSelectSchema>;
+
 export const userUpdateSchema = createUpdateSchema(users);
+export type userUpdateSchema = z.infer<typeof userUpdateSchema>;
