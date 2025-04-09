@@ -1,7 +1,7 @@
 import { eq } from "drizzle-orm";
 import { db } from "@/db";
 import { users } from "@/db/schemas";
-import { basicUserInfo } from "@/zod";
+import { basicUserInfoSchema } from "@/zod";
 import { createClient } from "@/supabase/server";
 
 export async function getAuthenticatedUserProfileBasic() {
@@ -18,7 +18,7 @@ export async function getAuthenticatedUserProfileBasic() {
       .where(eq(users.id, auth.user.id))
       .limit(1);
 
-    const parsed = basicUserInfo.parse(row[0]);
+    const parsed = basicUserInfoSchema.parse(row[0]);
 
     return parsed;
   } catch (e) {
