@@ -45,10 +45,10 @@ export const users = pgTable("users", {
 }).enableRLS();
 
 export const userInsertSchema = createInsertSchema(users);
-export type userInsertSchema = z.infer<typeof userInsertSchema>;
+export type UserInsertSchema = z.infer<typeof userInsertSchema>;
 
 export const userSelectSchema = createSelectSchema(users);
-export type userSelectSchema = z.infer<typeof userSelectSchema>;
+export type UserSelectSchema = z.infer<typeof userSelectSchema>;
 
 export const userUpdateSchema = createUpdateSchema(users);
-export type userUpdateSchema = z.infer<typeof userUpdateSchema>;
+export type UserUpdateSchema = z.infer<typeof userUpdateSchema>;
