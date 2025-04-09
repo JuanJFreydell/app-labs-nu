@@ -76,6 +76,7 @@ export async function verifyOtp(_prev: unknown, formData: FormData) {
         undefined
       >;
     }
+
     // Delete email cookie when we are done authenticating
     cookieStore.delete("email");
 
