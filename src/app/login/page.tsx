@@ -113,6 +113,7 @@ export default function LoginPage() {
 
                   <div className="flex items-center justify-between">
                     <div className="flex gap-3">
+                      {/*
                       <div className="flex h-6 shrink-0 items-center">
                         <div className="group grid size-4 grid-cols-1">
                           <input
@@ -149,6 +150,7 @@ export default function LoginPage() {
                       >
                         Remember me
                       </label>
+                      */}
                     </div>
                   </div>
                   <formEmail.Subscribe
