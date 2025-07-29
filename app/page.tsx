@@ -107,9 +107,9 @@ export default function Hackathon() {
               🚀 Build the Next Generation of AI Agents 🚀
             </h2>
             <p className="text-lg md:text-xl text-slate-200 mb-6 leading-relaxed font-light">
-              Join Northeastern's brightest minds in a revolutionary hackathon
-              where you'll create autonomous AI agents that can think, learn,
-              and act independently.
+              Join Northeastern&apos;s brightest minds in a revolutionary
+              hackathon where you&apos;ll create autonomous AI agents that can
+              think, learn, and act independently.
               <span className="text-cyan-300 font-semibold">
                 {" "}
                 The future of AI starts with you.
