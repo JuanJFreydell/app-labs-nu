@@ -39,8 +39,14 @@ export default function RootLayout({
             </p>
           </div>
           <ul className="px-2 flex justify-center h-full items-center flex-row text-white text-xl">
-            <Link href="/" className="cursor-pointer hover:bg-red-600 p-2">
+            <Link href="/about" className="cursor-pointer hover:bg-red-600 p-2">
               About
+            </Link>
+            <Link
+              href="/hackathon"
+              className="cursor-pointer hover:bg-red-600 p-2"
+            >
+              Hackathon
             </Link>
             <Link href="/teams" className="cursor-pointer hover:bg-red-600 p-2">
               Groups

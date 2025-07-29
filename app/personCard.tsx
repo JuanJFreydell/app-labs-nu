@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { FaEnvelope, FaLinkedin, FaCopy } from "react-icons/fa";
 
 interface PersonCardProps {
@@ -60,9 +61,11 @@ const PersonCard: React.FC<PersonCardProps> = ({
       {/* Profile Picture */}
       <div className="flex justify-center mb-6">
         <div className="relative w-24 h-24 rounded-full overflow-hidden border-4 border-red-600 shadow-md">
-          <img
+          <Image
             src={url}
             alt={`${firstName} ${lastName}`}
+            width={96}
+            height={96}
             className="w-full h-full object-cover"
           />
         </div>

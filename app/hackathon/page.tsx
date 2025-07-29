@@ -32,7 +32,7 @@ export default function Hackathon() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overscroll-none">
       {/* Animated Background */}
       <div className="fixed inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-96 h-96 bg-cyan-400/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
@@ -163,7 +163,7 @@ export default function Hackathon() {
         </div>
 
         {/* Footer */}
-        <div className="text-center text-slate-400">
+        <div className="text-center text-slate-400 pb-8">
           <p className="text-sm font-light">
             Powered by NU App Lab • Northeastern University
           </p>
